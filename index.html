@@ -16,7 +16,7 @@
   --desk:#141F2B; --desk2:#0E1721;
   --serif:"Fraunces", Georgia, "Times New Roman", serif;
   --mono:"IBM Plex Mono", ui-monospace, "Courier New", monospace;
-  --chrome-top:64px; --chrome-bot:96px;
+  --chrome-top:56px; --chrome-bot:72px;
 }
 *{box-sizing:border-box}
 html,body{margin:0;height:100%}
@@ -131,13 +131,13 @@ button{font-family:inherit;color:inherit;cursor:pointer;border:0;background:none
 
 /* timeline */
 .timeline{position:relative;border-top:1px solid rgba(169,189,203,.14);display:flex;align-items:center;gap:14px;
-  padding:0 clamp(12px,3vw,30px);z-index:20}
-.tnav{display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;flex:1;padding:14px 2px;scroll-snap-type:x proximity}
+  padding:0 clamp(12px,3vw,30px);z-index:20;background:rgba(169,189,203,.05)}
+.tnav{display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;flex:1;padding:6px 2px;scroll-snap-type:x proximity}
 .tnav::-webkit-scrollbar{display:none}
 .trail{position:relative;display:flex;align-items:stretch;width:100%;min-width:640px}
 .trail::before{content:"";position:absolute;left:0;right:0;top:15px;height:2px;background:rgba(169,189,203,.22)}
 .stop{position:relative;flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 4px;scroll-snap-align:center;min-width:74px}
-.stop .dot{width:12px;height:12px;border-radius:50%;background:var(--steel);border:3px solid var(--desk);z-index:1;transition:.2s}
+.stop .dot{width:9px;height:9px;border-radius:50%;background:var(--steel);border:2px solid var(--desk);z-index:1;transition:.2s}
 .stop .yr{font-size:11px;color:var(--steel);transition:.2s}
 .stop .nm{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--steel);transition:.2s}
 .stop:hover .dot{background:var(--mist)} .stop:hover .yr,.stop:hover .nm{color:var(--mist)}
@@ -156,8 +156,8 @@ button{font-family:inherit;color:inherit;cursor:pointer;border:0;background:none
   transition:opacity .7s ease,visibility .7s}
 .landing.gone{opacity:0;visibility:hidden}
 .land-stage{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
-.land-stage .scene-svg{position:absolute;inset:0;width:100%;height:100%;opacity:.42;filter:saturate(.9)}
-.land-scrim{position:absolute;inset:0;background:linear-gradient(180deg, rgba(14,23,33,.55) 0%, rgba(14,23,33,.2) 40%, rgba(14,23,33,.86) 100%)}
+.land-stage .scene-svg{position:absolute;inset:0;width:100%;height:100%;opacity:.95}
+.land-scrim{position:absolute;inset:0;background:linear-gradient(180deg, rgba(14,23,33,.25) 0%, rgba(14,23,33,.05) 35%, rgba(14,23,33,.6) 100%)}
 .land-copy{position:relative;z-index:2;max-width:min(880px,92vw);padding:0 24px;text-align:left}
 .eyebrow{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--amber);margin-bottom:18px}
 .land-copy h1{font-family:var(--serif);font-weight:900;color:var(--white);font-size:clamp(38px,8vw,88px);line-height:.94;letter-spacing:-.01em;margin:0 0 .26em}
@@ -168,6 +168,9 @@ button{font-family:inherit;color:inherit;cursor:pointer;border:0;background:none
 .land-cta svg{width:16px;height:16px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .land-foot{position:relative;z-index:2;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:16px clamp(18px,4vw,40px);border-top:1px solid rgba(169,189,203,.16);font-size:11px;letter-spacing:.1em;color:var(--steel)}
 .land-foot span b{color:var(--mist);font-weight:500}
+.land-copy-sm{position:absolute;left:0;bottom:64px;max-width:min(380px,86vw);padding:0 clamp(18px,4vw,40px)}
+.land-title-sm{font-family:var(--serif);font-weight:900;color:var(--white);font-size:clamp(22px,4vw,32px);line-height:1;margin:0 0 .2em}
+.land-cta-sm{padding:11px 20px;font-size:11.5px}
 
 /* ambient motion */
 @keyframes drift{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
@@ -180,9 +183,14 @@ button{font-family:inherit;color:inherit;cursor:pointer;border:0;background:none
 .scene-svg #waveform rect{transform-box:fill-box;transform-origin:center;animation:barpulse 1.4s ease-in-out infinite}
 .scene-svg #notifications{animation:drift 3s ease-in-out infinite}
 .scene-svg #messages circle{animation:tw 1.6s ease-in-out infinite}
+.scene-svg #messages circle{animation:tw 1.6s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:rotate(-1.1deg)}50%{transform:rotate(1.1deg)}}
+.scene-svg #crowd>g,.scene-svg #crowd-square>g{transform-box:fill-box;transform-origin:bottom center;animation:sway 2.4s ease-in-out infinite}
+.scene-svg #crowd>g:nth-child(3n),.scene-svg #crowd-square>g:nth-child(3n){animation-duration:2.9s;animation-delay:.3s}
+.scene-svg #crowd>g:nth-child(3n+1),.scene-svg #crowd-square>g:nth-child(3n+1){animation-delay:.6s}
 
 @media (max-width:720px){
-  :root{--chrome-top:54px;--chrome-bot:118px}
+  :root{--chrome-top:50px;--chrome-bot:92px}
   .brand span{display:none}
   .chip{max-width:64%}
   .stage-area{padding:8px}
@@ -204,187 +212,19 @@ button{font-family:inherit;color:inherit;cursor:pointer;border:0;background:none
 <!-- LANDING -->
 <section class="landing" id="landing">
   <div class="land-stage">
-    <svg class="scene-svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-<rect id="bg" width="100%" height="100%" class="paper"/>
-<g id="sky">
-  <rect x="0" y="0" width="1600" height="495.00000000000006" fill="#EEF2F5"/>
-  <rect x="0" y="495.00000000000006" width="1600" height="225.0" fill="#A9BDCB" opacity="0.5"/>
-  <rect x="0" y="720.0" width="1600" height="180.0" fill="#6B8CA3" opacity="0.35"/>
-</g><g id="sea">
-  <rect x="0" y="560" width="1600" height="340" fill="#3B6E8F"/>
-  <g id="waves" stroke="#6B8CA3" stroke-width="2" fill="none" opacity="0.6">
-    <path d="M 0 590 Q 100 580 200 590 T 400 590 T 600 590 T 800 590 T 1000 590 T 1200 590 T 1400 590 T 1600 590"/>
-    <path d="M 0 630 Q 100 620 200 630 T 400 630 T 600 630 T 800 630 T 1000 630 T 1200 630 T 1400 630 T 1600 630" opacity="0.7"/>
-  </g>
-</g><rect id="ground" x="0" y="700" width="1600" height="200" class="sand"/><g id="architecture">
-    <g id="harbor">
-      <rect x="60" y="560" width="220" height="140" class="paper2" stroke="#1B2A3A"/>
-      <rect x="80" y="580" width="30" height="30" class="blue"/>
-      <rect x="130" y="580" width="30" height="30" class="blue"/>
-      <rect x="180" y="580" width="30" height="30" class="blue"/>
-      <rect x="230" y="580" width="30" height="30" class="blue"/>
-      <path class="ink" d="M 40 560 L 300 560 L 280 540 L 60 540 Z"/>
-      <text x="170" y="686" text-anchor="middle" class="label" font-size="12" fill="#1B2A3A">PORTO</text>
-    </g>
-    <g id="train-station">
-      <rect x="360" y="540" width="260" height="160" class="paper2" stroke="#1B2A3A"/>
-      <rect x="380" y="580" width="40" height="60" class="blue"/>
-      <rect x="440" y="580" width="40" height="60" class="blue"/>
-      <rect x="500" y="580" width="40" height="60" class="blue"/>
-      <rect x="560" y="580" width="40" height="60" class="blue"/>
-      <path class="ink" d="M 350 540 L 630 540 L 490 480 Z"/>
-      <text x="490" y="686" text-anchor="middle" class="label" font-size="12" fill="#1B2A3A">ESTAÇÃO</text>
-    </g>
-    <g id="townhall">
-      <rect x="700" y="500" width="220" height="200" class="paper2" stroke="#1B2A3A"/>
-      <rect x="720" y="540" width="180" height="160" class="mist"/>
-      <path class="ink" d="M 700 500 L 810 420 L 920 500 Z"/>
-      <rect x="800" y="440" width="20" height="30" class="navy"/>
-      <text x="810" y="686" text-anchor="middle" class="label" font-size="12" fill="#1B2A3A">PREFEITURA</text>
-    </g>
-    <g id="newsroom">
-      <rect x="1000" y="540" width="240" height="160" class="paper2" stroke="#1B2A3A"/>
-      <rect x="1020" y="580" width="200" height="80" class="navy"/>
-      <text x="1120" y="626" text-anchor="middle" class="label" font-size="18" fill="#EEF2F5" font-weight="700">GAZETA</text>
-      <text x="1120" y="686" text-anchor="middle" class="label" font-size="12" fill="#1B2A3A">REDAÇÃO</text>
-    </g>
-    <g id="clock-tower">
-      <rect x="1320" y="440" width="80" height="260" class="paper2" stroke="#1B2A3A"/>
-      <circle cx="1360" cy="500" r="26" class="paper" stroke="#1B2A3A" stroke-width="3"/>
-      <line class="stroke-ink" x1="1360" y1="500" x2="1360" y2="484"/>
-      <line class="stroke-ink" x1="1360" y1="500" x2="1372" y2="500"/>
-      <path class="ink" d="M 1320 440 L 1360 400 L 1400 440 Z"/>
-      <text x="1360" y="686" text-anchor="middle" class="label" font-size="12" fill="#1B2A3A">TORRE</text>
-    </g>
-    </g><g id="transport"><g id="steamship" transform="translate(1100,640) scale(0.9)">
-  <path class="ink" d="M -110 0 L 110 0 L 90 40 L -90 40 Z"/>
-  <rect x="-70" y="-40" width="140" height="40" class="paper2"/>
-  <rect x="-60" y="-30" width="16" height="16" class="blue"/>
-  <rect x="-30" y="-30" width="16" height="16" class="blue"/>
-  <rect x="0"   y="-30" width="16" height="16" class="blue"/>
-  <rect x="30"  y="-30" width="16" height="16" class="blue"/>
-  <rect x="-8" y="-90" width="16" height="50" class="rust"/>
-  <path class="ink" d="M -8 -100 Q 0 -110 8 -100 L 8 -90 L -8 -90 Z"/>
-  <g id="steamship-smoke">
-    <circle cx="0"  cy="-115" r="10" class="mist"/>
-    <circle cx="14" cy="-128" r="8"  class="mist"/>
-    <circle cx="-8" cy="-135" r="6"  class="mist"/>
-  </g>
-</g><g id="small-boat" transform="translate(300,700) scale(0.9)">
-  <path class="ink" d="M -40 0 L 40 0 L 30 16 L -30 16 Z"/>
-  <path class="paper2" d="M 0 -50 L 0 0 L 30 0 Z"/>
-  <line class="stroke-ink" x1="0" y1="-50" x2="0" y2="0"/>
-</g><g id="horse" transform="translate(1420,780) scale(1)">
-  <path class="ink" d="M -40 0 Q -30 -18 -10 -20 L 30 -20 Q 46 -20 52 -34 L 60 -46 L 66 -40 L 60 -22 Q 70 -18 72 -6 L 72 6 L 60 6 L 60 -4 L 40 -2 L 34 6 L 34 30 L 26 30 L 24 6 L -6 6 L -6 30 L -14 30 L -18 6 L -30 4 Q -40 4 -44 -2 Z"/>
-  <circle cx="60" cy="-32" r="2" fill="#EEF2F5"/>
-  <path class="stroke-ink" d="M 52 -34 L 42 -46 M 60 -46 L 58 -52"/>
-</g><g id="horse-rider" transform="translate(1240,780) scale(1)">
-  <g id="horse-rider-h" transform="translate(0,0) scale(1)">
-  <path class="ink" d="M -40 0 Q -30 -18 -10 -20 L 30 -20 Q 46 -20 52 -34 L 60 -46 L 66 -40 L 60 -22 Q 70 -18 72 -6 L 72 6 L 60 6 L 60 -4 L 40 -2 L 34 6 L 34 30 L 26 30 L 24 6 L -6 6 L -6 30 L -14 30 L -18 6 L -30 4 Q -40 4 -44 -2 Z"/>
-  <circle cx="60" cy="-32" r="2" fill="#EEF2F5"/>
-  <path class="stroke-ink" d="M 52 -34 L 42 -46 M 60 -46 L 58 -52"/>
-</g>
-  <g id="horse-rider-rider">
-    <ellipse cx="20" cy="-46" rx="14" ry="18" class="navy"/>
-    <circle cx="20" cy="-70" r="10" class="sand"/>
-    <path class="ink" d="M 8 -78 Q 20 -90 32 -78 L 32 -72 L 8 -72 Z"/>
-    <path class="stroke-navy" d="M 30 -46 L 46 -34"/>
-  </g>
-</g><g id="pigeon" transform="translate(760,260) scale(1.2)">
-  <ellipse cx="0" cy="0" rx="22" ry="10" class="steel"/>
-  <circle cx="18" cy="-6" r="8" class="steel"/>
-  <circle cx="22" cy="-8" r="1.5" class="ink"/>
-  <path class="rust" d="M 26 -6 L 32 -4 L 26 -2 Z"/>
-  <g id="pigeon-wing">
-    <path class="navy" d="M -4 -4 Q -14 -22 -30 -14 Q -18 -6 -8 -2 Z"/>
-  </g>
-  <rect x="-4" y="6" width="10" height="6" class="paper2" stroke="#1B2A3A" stroke-width="1"/>
-</g><g id="carriage" transform="translate(500,780) scale(1)">
-  <rect x="-40" y="-40" width="80" height="40" class="navy"/>
-  <rect x="-30" y="-32" width="24" height="18" class="paper"/>
-  <rect x="6"   y="-32" width="24" height="18" class="paper"/>
-  <circle cx="-28" cy="6" r="14" class="ink"/>
-  <circle cx="-28" cy="6" r="4"  class="paper"/>
-  <circle cx="28"  cy="6" r="14" class="ink"/>
-  <circle cx="28"  cy="6" r="4"  class="paper"/>
-</g></g><g id="communication"><g id="mailbag" transform="translate(120,820) scale(1)">
-  <path class="rust" d="M -30 -10 Q -34 30 0 34 Q 34 30 30 -10 Z"/>
-  <rect x="-30" y="-14" width="60" height="8" class="ink"/>
-  <text x="0" y="18" text-anchor="middle" class="mono" font-size="14" fill="#EEF2F5">POST</text>
-</g><g id="envelope-1" transform="translate(220,820) scale(1)">
-  <rect x="-30" y="-20" width="60" height="40" class="white" stroke="#1B2A3A" stroke-width="2"/>
-  <path class="stroke-ink" d="M -30 -20 L 0 4 L 30 -20"/>
-  <circle cx="20" cy="14" r="4" class="rust"/>
-</g><g id="envelope-2" transform="translate(280,830) scale(0.8)">
-  <rect x="-30" y="-20" width="60" height="40" class="white" stroke="#1B2A3A" stroke-width="2"/>
-  <path class="stroke-ink" d="M -30 -20 L 0 4 L 30 -20"/>
-  <circle cx="20" cy="14" r="4" class="rust"/>
-</g><g id="newspaper" transform="translate(340,830) scale(1)">
-  <rect x="-40" y="-10" width="80" height="20" class="paper2" stroke="#1B2A3A" stroke-width="2" rx="4"/>
-  <line class="stroke-ink" x1="-30" y1="-4" x2="30" y2="-4"/>
-  <line class="stroke-ink" x1="-30" y1="2" x2="20" y2="2"/>
-  <line class="stroke-ink" x1="-30" y1="6" x2="26" y2="6"/>
-</g><g id="map" transform="translate(1500,220) scale(0.8)">
-  <path class="sand" d="M -50 -30 L 0 -34 L 50 -30 L 50 30 L 0 34 L -50 30 Z" stroke="#1B2A3A" stroke-width="2"/>
-  <path class="stroke-ink" d="M -30 -20 Q -10 0 10 -10 Q 30 -20 40 0"/>
-  <circle cx="10" cy="-10" r="4" class="rust"/>
-</g><g id="ballot-box" transform="translate(940,800) scale(1)">
-  <rect x="-40" y="-40" width="80" height="70" class="navy"/>
-  <rect x="-30" y="-46" width="60" height="8" class="ink"/>
-  <rect x="-10" y="-50" width="20" height="6" class="paper"/>
-  <text x="0" y="6" text-anchor="middle" class="label" font-size="18" fill="#EEF2F5" font-weight="700">VOTO</text>
-</g><g id="vote-pile" transform="translate(870,838) scale(1)">
-  <rect x="-24" y="-2" width="60" height="4" class="paper" stroke="#1B2A3A"/>
-  <rect x="-30" y="-8" width="60" height="4" class="paper" stroke="#1B2A3A"/>
-  <rect x="-20" y="-14" width="60" height="4" class="paper" stroke="#1B2A3A"/>
-  <rect x="-28" y="-20" width="60" height="4" class="paper" stroke="#1B2A3A"/>
-</g></g><g id="characters"><g id="postman" transform="translate(180,800) scale(1.2)">
-  <g id="postman-p" transform="translate(0,0) scale(1)">
-  <circle cx="0" cy="-30" r="10" class="sand"/>
-  <path class="rust" d="M -14 -18 Q 0 -22 14 -18 L 18 20 L -18 20 Z"/>
-  <line class="stroke-navy" x1="-8" y1="20" x2="-8" y2="40"/>
-  <line class="stroke-navy" x1="8"  y1="20" x2="8"  y2="40"/>
-</g>
-  <rect x="10" y="-4" width="22" height="16" class="sand" stroke="#1B2A3A"/>
-  <path class="ink" d="M -12 -42 L 12 -42 L 12 -36 L -12 -36 Z"/>
-</g><g id="journalist" transform="translate(1080,800) scale(1.2)">
-  <g id="journalist-p" transform="translate(0,0) scale(1)">
-  <circle cx="0" cy="-30" r="10" class="sand"/>
-  <path class="navy" d="M -14 -18 Q 0 -22 14 -18 L 18 20 L -18 20 Z"/>
-  <line class="stroke-navy" x1="-8" y1="20" x2="-8" y2="40"/>
-  <line class="stroke-navy" x1="8"  y1="20" x2="8"  y2="40"/>
-</g>
-  <rect x="-24" y="-8" width="16" height="20" class="paper" stroke="#1B2A3A"/>
-</g><g id="voter" transform="translate(880,800) scale(1.2)">
-  <g id="voter-p" transform="translate(0,0) scale(1)">
-  <circle cx="0" cy="-30" r="10" class="sand"/>
-  <path class="teal" d="M -14 -18 Q 0 -22 14 -18 L 18 20 L -18 20 Z"/>
-  <line class="stroke-navy" x1="-8" y1="20" x2="-8" y2="40"/>
-  <line class="stroke-navy" x1="8"  y1="20" x2="8"  y2="40"/>
-</g>
-  <rect x="10" y="-6" width="10" height="14" class="paper" stroke="#1B2A3A"/>
-</g><g id="messenger" transform="translate(1300,800) scale(1.2)">
-  <g id="messenger-p" transform="translate(0,0) scale(1)">
-  <circle cx="0" cy="-30" r="10" class="sand"/>
-  <path class="blue" d="M -14 -18 Q 0 -22 14 -18 L 18 20 L -18 20 Z"/>
-  <line class="stroke-navy" x1="-8" y1="20" x2="-8" y2="40"/>
-  <line class="stroke-navy" x1="8"  y1="20" x2="8"  y2="40"/>
-</g>
-  <path class="rust" d="M -6 -4 L 18 6 L 14 12 L -10 2 Z"/>
-</g></g></svg>
+    <div id="landWheel" style="position:absolute;inset:0"></div>
     <div class="land-scrim"></div>
-    <div class="land-copy">
+    <div class="land-copy land-copy-sm">
       <div class="eyebrow">Ensaio visual · 1848 → 2026</div>
-      <h1>A máquina<br>eleitoral</h1>
-      <p class="sub">Uma história material da tecnologia nas eleições. Não como as pessoas usaram cada ferramenta — mas o que cada objeto técnico concretamente tornou possível, obrigatório ou irresistível no jogo do voto.</p>
-      <p class="thesis">Cada tecnologia redefine o que conta como eleitor, como verdade e como voto. Isto não começou com os algoritmos.</p>
-      <button class="land-cta" id="enter">Entrar na linha do tempo
+      <h1 class="land-title-sm">A máquina eleitoral</h1>
+      <p class="sub">Toque num setor da roda para abrir o capítulo.</p>
+      <button class="land-cta land-cta-sm" id="enter">Começar do início
         <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </button>
     </div>
   </div>
   <div class="land-foot">
-    <span><b>Como ler:</b> cada capítulo abre com o contexto · toque nos pontos que pulsam para os detalhes.</span>
+    <span><b>Como navegar:</b> toque num setor da roda · dentro, use a linha do tempo para seguir.</span>
     <span><b>08</b> capítulos · do telégrafo à evidência sintética</span>
   </div>
 </section>
@@ -1446,7 +1286,6 @@ function renderStage(){
   if(isFio(idx)){
     chip.innerHTML='<div class="ey">Síntese</div><h2>'+FIO.title+'</h2>';
     requestAnimationFrame(()=>{plate.classList.add('on');stage.classList.remove('fading');});
-    openPoint(0);
     return;
   }
   const s=SCENES[idx];
@@ -1463,7 +1302,6 @@ function renderStage(){
     spotsEl.appendChild(el);
   });
   requestAnimationFrame(()=>{plate.classList.add('on');stage.classList.remove('fading');});
-  openPoint(0);
 }
 
 function updateChrome(){
@@ -1588,6 +1426,20 @@ function enterApp(){
   idx=start; renderStage(); updateChrome();
 }
 function showLanding(){ closePop(); landing.classList.remove('gone'); appEl.setAttribute('aria-hidden','true'); }
+
+/* roda clicável da landing */
+document.getElementById('landWheel').innerHTML = svgOf('arena');
+const landSvg = document.querySelector('#landWheel svg');
+if(landSvg) landSvg.setAttribute('preserveAspectRatio','xMidYMid slice');
+const wheelMap = { 'sector-1':'telegrafo', 'sector-2':'telegrafo', 'sector-3':'bernays',
+                   'sector-4':'radio', 'sector-5':'televisao', 'sector-6':'cambridge' };
+Object.keys(wheelMap).forEach(id=>{
+  const el=document.getElementById(id);
+  if(el){ el.style.cursor='pointer';
+    el.addEventListener('click',()=>{ location.hash=wheelMap[id]; enterApp(); }); }
+});
+const ballot=document.getElementById('central-ballot');
+if(ballot){ ballot.style.cursor='pointer'; ballot.addEventListener('click',()=>enterApp()); }
 </script>
 </body>
 </html>
