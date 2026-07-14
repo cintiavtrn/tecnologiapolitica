@@ -43,7 +43,7 @@ button{font-family:inherit;color:inherit;cursor:pointer;border:0;background:none
 /* shell */
 #app{position:fixed;inset:0;display:block;height:100%}
 .masthead{position:absolute;top:0;left:0;right:0;height:var(--chrome-top);display:flex;align-items:center;justify-content:space-between;
-  padding:0 clamp(14px,3vw,34px);gap:16px;background:linear-gradient(180deg, rgba(14,23,33,.75), rgba(14,23,33,0));
+  padding:0 clamp(14px,3vw,34px);gap:16px;background:rgba(14,23,33,.94);backdrop-filter:blur(6px);
   z-index:20;transition:opacity .4s ease,transform .4s ease}
 .brand{display:flex;align-items:baseline;gap:14px;min-width:0}
 .brand b{font-family:var(--serif);font-weight:900;font-size:clamp(15px,2.1vw,20px);color:var(--white);white-space:nowrap}
@@ -89,9 +89,9 @@ button{font-family:inherit;color:inherit;cursor:pointer;border:0;background:none
 @keyframes ring{0%{transform:scale(.55);opacity:.9}70%{opacity:0}100%{transform:scale(1.4);opacity:0}}
 
 /* popup */
-.pop-scrim{position:absolute;inset:0;z-index:8;background:rgba(14,23,33,.28);opacity:0;visibility:hidden;transition:.3s}
+.pop-scrim{position:absolute;inset:0;z-index:28;background:rgba(14,23,33,.28);opacity:0;visibility:hidden;transition:.3s}
 .pop-scrim.show{opacity:1;visibility:visible}
-.pop{position:absolute;z-index:9;width:min(360px,80%);background:var(--white);color:var(--ink);
+.pop{position:absolute;z-index:29;width:min(360px,80%);background:var(--white);color:var(--ink);
   border:1px solid rgba(27,42,58,.16);border-radius:12px;box-shadow:0 30px 70px -24px rgba(0,0,0,.6);
   opacity:0;visibility:hidden;transform:translateY(6px) scale(.98);transform-origin:top left;
   transition:opacity .22s ease,transform .22s ease}
@@ -128,7 +128,7 @@ button{font-family:inherit;color:inherit;cursor:pointer;border:0;background:none
 
 /* timeline */
 .timeline{position:absolute;bottom:0;left:0;right:0;height:var(--chrome-bot);border-top:none;display:flex;align-items:center;gap:14px;
-  padding:0 clamp(12px,3vw,30px);z-index:20;background:linear-gradient(0deg, rgba(14,23,33,.8), rgba(14,23,33,0));
+  padding:0 clamp(12px,3vw,30px);z-index:20;background:rgba(14,23,33,.94);backdrop-filter:blur(6px);
   transition:opacity .4s ease,transform .4s ease}
 .tnav{display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;flex:1;padding:6px 2px;scroll-snap-type:x proximity}
 .tnav::-webkit-scrollbar{display:none}
@@ -136,8 +136,8 @@ button{font-family:inherit;color:inherit;cursor:pointer;border:0;background:none
 .trail::before{content:"";position:absolute;left:0;right:0;top:15px;height:2px;background:rgba(169,189,203,.22)}
 .stop{position:relative;flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 4px;scroll-snap-align:center;min-width:74px}
 .stop .dot{width:9px;height:9px;border-radius:50%;background:var(--steel);border:2px solid var(--desk);z-index:1;transition:.2s}
-.stop .yr{font-size:11px;color:var(--steel);transition:.2s}
-.stop .nm{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--steel);transition:.2s}
+.stop .yr{font-size:11px;color:var(--mist);transition:.2s}
+.stop .nm{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--mist);transition:.2s}
 .stop:hover .dot{background:var(--mist)} .stop:hover .yr,.stop:hover .nm{color:var(--mist)}
 .stop.active .dot{background:var(--rust);transform:scale(1.25)}
 .stop.active .yr{color:var(--amber)} .stop.active .nm{color:var(--paper)}
